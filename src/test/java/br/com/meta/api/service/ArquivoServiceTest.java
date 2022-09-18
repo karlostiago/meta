@@ -16,9 +16,9 @@ public class ArquivoServiceTest extends AbstractRunApplicationTest {
 	
 	@Test
 	public void deveBuscarTodosArquivoNoDiretorioBase() {
-		List<Arquivo> arquivos = arquivoService.buscarArquivos("teste", "teste");
+		List<Arquivo> arquivos = arquivoService.buscarArquivos("karlostiago", "algamoney-api");
 		
 		Assertions.assertThat(arquivos.size())
-			.isEqualTo(48);
+			.isEqualTo(74);
 	}
 }

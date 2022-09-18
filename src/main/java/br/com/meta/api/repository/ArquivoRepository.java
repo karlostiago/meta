@@ -2,34 +2,41 @@ package br.com.meta.api.repository;
 
 import static br.com.meta.api.utils.ArquivoUtils.criarDiretorio;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import br.com.meta.api.model.Arquivo;
+import br.com.meta.api.exception.RepositorioNaoExisteException;
+import br.com.meta.api.model.Repositorio;
 
 @Repository
 public class ArquivoRepository {
 	
 	protected final Logger LOGGER = Logger.getLogger(ArquivoRepository.class);
+	
 	private final String BASE_REPOSITORIO_LOCAL = "src/main/resources/repos";
 	
 	@Autowired
 	private GitRepository gitRepository;
 	
-	public List<Arquivo> buscarArquivo(String usuario, String repositorio) {
-		gitRepository.clonar(usuario, repositorio, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
-		return lerTodosDiretorios();
-	}	
+	public Repositorio buscarRepositorio(String usuario, String repositorio) {
+		clonarRepositorio(usuario, repositorio);
+		return buscarRepositorio(repositorio);
+	}
 	
-	private List<Arquivo> lerTodosDiretorios() {
-		List<Arquivo> arquivos = new ArrayList<>();
-		for(int i = 0; i < 48; i++) {
-			arquivos.add(new Arquivo());
+	private void clonarRepositorio(String usuario, String repositorio) {
+		gitRepository.clonar(usuario, repositorio, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
+	}
+	
+	private Repositorio buscarRepositorio(String repositorio) {
+		File [] arquivos = new File(BASE_REPOSITORIO_LOCAL).listFiles();
+		for (File dir : arquivos) {
+			if (dir.isDirectory() && repositorio.equalsIgnoreCase(dir.getName())) {
+				return new Repositorio(dir);
+			}
 		}
-		return arquivos;
+		throw new RepositorioNaoExisteException();
 	}
 }

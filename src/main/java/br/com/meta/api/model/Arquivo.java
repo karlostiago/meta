@@ -4,18 +4,9 @@ import java.util.Objects;
 
 public class Arquivo {
 
-	private Long codigo;
 	private String nome;
 	private String extensao;
-	private Long totalDeLinhas;
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+	private int numeroDeLinhas;
 
 	public String getNome() {
 		return nome;
@@ -33,17 +24,17 @@ public class Arquivo {
 		this.extensao = extensao;
 	}
 
-	public Long getTotalDeLinhas() {
-		return totalDeLinhas;
+	public int getNumeroDeLinhas() {
+		return numeroDeLinhas;
 	}
 
-	public void setTotalDeLinhas(Long totalDeLinhas) {
-		this.totalDeLinhas = totalDeLinhas;
+	public void setNumeroDeLinhas(int numeroDeLinhas) {
+		this.numeroDeLinhas = numeroDeLinhas;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo);
+		return Objects.hash(nome);
 	}
 
 	@Override
@@ -55,6 +46,6 @@ public class Arquivo {
 		if (getClass() != obj.getClass())
 			return false;
 		Arquivo other = (Arquivo) obj;
-		return Objects.equals(codigo, other.codigo);
+		return Objects.equals(nome, other.nome);
 	}
 }
