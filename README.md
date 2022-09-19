@@ -8,3 +8,4 @@
 # Observação
  * Caso tenha algum erro de compilação na source de test os mesmo deve ser ignorado.
  * Esse erro acontece pois dentro da pasta de testes tem um projeto clonado que serviu de base para ser testado.
+ * Está api não utilizada base de dados para persistência de dados.
