@@ -1,4 +1,4 @@
-package br.com.meta.api.dto;
+package br.com.meta.api.model.dto;
 
 public class ArquivoDTO {
 

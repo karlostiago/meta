@@ -1,4 +1,4 @@
-package br.com.meta.api.handler;
+package br.com.meta.api.exception.handler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

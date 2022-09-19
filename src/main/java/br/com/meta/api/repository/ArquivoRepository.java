@@ -6,6 +6,7 @@ import java.io.File;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import br.com.meta.api.exception.RepositorioNaoExisteException;
@@ -16,7 +17,8 @@ public class ArquivoRepository {
 	
 	protected final Logger LOGGER = Logger.getLogger(ArquivoRepository.class);
 	
-	private final String BASE_REPOSITORIO_LOCAL = "src/main/resources/repos";
+	@Value("${meta.repositorio-local}")
+	private String BASE_REPOSITORIO_LOCAL;
 	
 	@Autowired
 	private GitRepository gitRepository;

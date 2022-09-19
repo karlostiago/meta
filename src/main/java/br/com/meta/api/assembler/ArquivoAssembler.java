@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import br.com.meta.api.dto.ArquivoDTO;
 import br.com.meta.api.model.Arquivo;
+import br.com.meta.api.model.dto.ArquivoDTO;
 
 @Component
 public class ArquivoAssembler {

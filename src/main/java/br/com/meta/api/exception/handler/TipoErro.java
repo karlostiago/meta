@@ -1,4 +1,4 @@
-package br.com.meta.api.handler;
+package br.com.meta.api.exception.handler;
 
 public enum TipoErro {
 	

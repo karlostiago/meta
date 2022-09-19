@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.meta.api.abstracts.AbstractRunApplicationTest;
+import br.com.meta.api.exception.RepositorioNaoExisteException;
 import br.com.meta.api.model.Arquivo;
 
 public class ArquivoServiceTest extends AbstractRunApplicationTest {
@@ -19,6 +20,11 @@ public class ArquivoServiceTest extends AbstractRunApplicationTest {
 		List<Arquivo> arquivos = arquivoService.buscarArquivos("karlostiago", "algamoney-api");
 		
 		Assertions.assertThat(arquivos.size())
-			.isEqualTo(74);
-	}
+			.isEqualTo(56);
+	}	
+	
+	@Test(expected = RepositorioNaoExisteException.class)
+	public void deveOcorrerUmaExceptionQuandoRepositorioNaoExistir() {
+		arquivoService.buscarArquivos("karlostiago", "algamoney");
+	}	
 }

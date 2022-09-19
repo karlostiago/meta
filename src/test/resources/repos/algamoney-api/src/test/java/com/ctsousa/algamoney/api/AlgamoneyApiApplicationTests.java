@@ -1,10 +1,10 @@
-package br.com.meta.api;
+package com.ctsousa.algamoney.api;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MetaApiApplicationTests {
+class AlgamoneyApiApplicationTests {
 
 	@Test
 	void contextLoads() {

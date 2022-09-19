@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.jboss.logging.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,8 @@ public class GitRepository {
 				.call();
 		} catch (GitAPIException e) {
 			throw new GitCloneException();
+		} catch (JGitInternalException e) {
+			// Não deve fazer nenhum tratamento para essa exception.
 		} catch (Exception e) {
 			throw new RepositorioNaoExisteException();
 		}

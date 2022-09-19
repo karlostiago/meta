@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.meta.api.assembler.ArquivoAssembler;
-import br.com.meta.api.dto.ArquivoDTO;
 import br.com.meta.api.model.Arquivo;
-import br.com.meta.api.service.ArquivoService;
+import br.com.meta.api.model.dto.ArquivoDTO;
+import br.com.meta.api.service.impl.ArquivoServiceImpl;
 
 @RestController
 @RequestMapping(path = "/v1/arquivos")
 public class ArquivoController {
 	
 	@Autowired
-	private ArquivoService arquivoService;
+	private ArquivoServiceImpl arquivoService;
 	
 	@Autowired
 	private ArquivoAssembler arquivoAssembler;

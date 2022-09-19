@@ -1,4 +1,4 @@
-package br.com.meta.api.handler;
+package br.com.meta.api.exception.handler;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

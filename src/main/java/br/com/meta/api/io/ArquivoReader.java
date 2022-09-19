@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.com.meta.api.exception.ArquivoNaoExisteException;
 import br.com.meta.api.model.Arquivo;
 
 @Component
@@ -18,10 +17,6 @@ public class ArquivoReader {
 	private static final List<String> IGNORAR = Arrays.asList(".git", ".gitignore", ".mvn", "mvnw", "mvnw.cmd", "Procfile");
 	
 	public List<Arquivo> lerDiretorio(File repositorio, List<Arquivo> arquivos) {
-		
-		if (arquivos == null || arquivos.isEmpty()) {
-			throw new ArquivoNaoExisteException();
-		}
 		
 		for (File file : repositorio.listFiles()) {
 			
