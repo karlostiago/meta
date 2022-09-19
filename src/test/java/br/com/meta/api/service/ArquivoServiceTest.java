@@ -20,7 +20,7 @@ public class ArquivoServiceTest extends AbstractRunApplicationTest {
 		List<Arquivo> arquivos = arquivoService.buscarArquivos("karlostiago", "algamoney-api");
 		
 		Assertions.assertThat(arquivos.size())
-			.isEqualTo(55);
+			.isEqualTo(57);
 	}	
 	
 	@Test(expected = RepositorioNaoExisteException.class)
