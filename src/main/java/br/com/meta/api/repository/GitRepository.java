@@ -22,21 +22,21 @@ public class GitRepository {
 	
 	public void clonar(String usuario, String repositorio, File diretorio) {
 		
-		try {
+//		try {
 			RestTemplate rt = new RestTemplate();
 			ResponseEntity<Autor> response = rt.getForEntity(String.format(BASE_GITHUB_API, usuario, repositorio), Autor.class);
 			String url = response.getBody().getHtml_url().concat(".git");
 			
-			CloneCommand command = new CloneCommand();
-			command.setURI(url);
-			command.setDirectory(diretorio);
-			command.call();
-		} catch (GitAPIException e) {
-			throw new GitCloneException();
-		} catch (JGitInternalException e) {
-			// Não deve fazer nenhum tratamento para essa exception.
-		} catch (Exception e) {
-			throw new RepositorioNaoExisteException();
-		}
+//			CloneCommand command = new CloneCommand();
+//			command.setURI(url);
+//			command.setDirectory(diretorio);
+//			command.call();
+//		} catch (GitAPIException e) {
+//			throw new GitCloneException();
+//		} catch (JGitInternalException e) {
+//			// Não deve fazer nenhum tratamento para essa exception.
+//		} catch (Exception e) {
+//			throw new RepositorioNaoExisteException();
+//		}
 	}
 }
