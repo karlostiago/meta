@@ -7,3 +7,9 @@
 
 ### Observação
  * Está api não utilizada base de dados para persistência de dados.
+ 
+### Como realizar a chamada na api
+ * `Http Get: /v1/arquivos/{dono-repositorio}/{nome-repositorio}`
+ 
+### Exemplo
+  * `Http Get: /v1/arquivos/karlostiago/algamoney-api`
