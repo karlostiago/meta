@@ -2,7 +2,7 @@ package br.com.meta.api.repository;
 
 import java.io.File;
 
-import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.jboss.logging.Logger;
@@ -26,11 +26,11 @@ public class GitRepository {
 			RestTemplate rt = new RestTemplate();
 			ResponseEntity<Autor> response = rt.getForEntity(String.format(BASE_GITHUB_API, usuario, repositorio), Autor.class);
 			String url = response.getBody().getHtml_url().concat(".git");
-
-			Git.cloneRepository()
-				.setURI(url)
-				.setDirectory(diretorio)
-				.call();
+			
+			CloneCommand command = new CloneCommand();
+			command.setURI(url);
+			command.setDirectory(diretorio);
+			command.call();
 		} catch (GitAPIException e) {
 			throw new GitCloneException();
 		} catch (JGitInternalException e) {
