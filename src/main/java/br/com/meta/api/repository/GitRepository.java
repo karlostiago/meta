@@ -2,16 +2,11 @@ package br.com.meta.api.repository;
 
 import java.io.File;
 
-import org.eclipse.jgit.api.CloneCommand;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.jboss.logging.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.meta.api.exception.GitCloneException;
-import br.com.meta.api.exception.RepositorioNaoExisteException;
 import br.com.meta.api.model.Autor;
 
 @Repository
