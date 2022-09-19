@@ -3,6 +3,9 @@ package br.com.meta.api.repository;
 import static br.com.meta.api.utils.ArquivoUtils.criarDiretorio;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +27,15 @@ public class ArquivoRepository {
 	private GitRepository gitRepository;
 	
 	public Repositorio buscarRepositorio(String usuario, String repositorio) {
-		clonarRepositorio(usuario, repositorio);
+		if (naoExisteRepositorio(repositorio)) {			
+			clonarRepositorio(usuario, repositorio);
+		}
 		return buscarRepositorio(repositorio);
 	}
 	
-	private void clonarRepositorio(String usuario, String repositorio) {
-		gitRepository.clonar(usuario, repositorio, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
+	private void clonarRepositorio(String usuario, String repositorio) {		
+		String repositorioURL = gitRepository.buscarRepositorio(usuario, repositorio);
+		gitRepository.clonar(repositorioURL, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
 	}
 	
 	private Repositorio buscarRepositorio(String repositorio) {
@@ -40,5 +46,18 @@ public class ArquivoRepository {
 			}
 		}
 		throw new RepositorioNaoExisteException();
+	}
+	
+	private Boolean existeRepositorio(String nomeRepositorio) {
+		List<File> arquivos = Arrays.asList(new File(BASE_REPOSITORIO_LOCAL).listFiles())
+				.stream()
+				.filter(arquivo -> arquivo.getName().equalsIgnoreCase(nomeRepositorio))
+				.collect(Collectors.toList());
+		
+		return !arquivos.isEmpty() ? true : false;
+	}
+	
+	private Boolean naoExisteRepositorio(String nomeRepositorio) {
+		return !existeRepositorio(nomeRepositorio);
 	}
 }
