@@ -30,22 +30,20 @@ public class ArquivoRepository {
 		if (naoExisteRepositorio(repositorio)) {			
 			clonarRepositorio(usuario, repositorio);
 		}
-		return buscarRepositorio(repositorio);
-	}
-	
-	private void clonarRepositorio(String usuario, String repositorio) {		
-		String repositorioURL = gitRepository.buscarRepositorio(usuario, repositorio);
-		gitRepository.clonar(repositorioURL, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
-	}
-	
-	private Repositorio buscarRepositorio(String repositorio) {
+
 		File [] arquivos = new File(BASE_REPOSITORIO_LOCAL).listFiles();
 		for (File dir : arquivos) {
 			if (dir.isDirectory() && repositorio.equalsIgnoreCase(dir.getName())) {
 				return new Repositorio(dir);
 			}
 		}
+		
 		throw new RepositorioNaoExisteException();
+	}
+	
+	private void clonarRepositorio(String usuario, String repositorio) {		
+		String repositorioURL = gitRepository.buscarRepositorio(usuario, repositorio);
+		gitRepository.clonar(repositorioURL, criarDiretorio(BASE_REPOSITORIO_LOCAL, repositorio));
 	}
 	
 	private Boolean existeRepositorio(String nomeRepositorio) {
